@@ -52,41 +52,41 @@
 // Definition - variable: a location in memory
 // Definition - scope : a variable is only accessible in the method in which it was declared
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+    Player player = new Player();
 
     System.out.println("Welcome to my Integration Project. Let's play Battleship!");
     
     System.out.println("Are you ready? (yes/no)");    
-    String answer = scanner.next();
+    String answer = player.getPlayerInput();
     if (answer.equals("yes")) {
       System.out.println("Ok GREAT! Let's start!");
-      startNewGame();
+      startNewBattleshipGame(player);
     } else {
       do {
         System.out.println("Are you sure?? (yes/no)");
-      } while (!scanner.next().equals("no"));  
+      } while (!player.getPlayerInput().equals("no"));  
       System.out.println("Ok GREAT! Let's start!");
-      startNewGame();
+      startNewBattleshipGame(player);
     }
     
-    double pi = 3.14;
+    double pi = Math.PI;
     int radiusEarth = 6371;
     int surfaceAreaEarth = (int) (4 * pi * Math.pow(radiusEarth, 2));
+    System.out.println("Fun fact: The surface area of the earth is: "
+        + surfaceAreaEarth);
     // casting: telling java to trust the programmer that the restult will fit
     //          into the data type that is being casted to.
 
-    scanner.close();
+    player.closeScanner();
   }
   
-  private static void startNewGame() {
+  private static void startNewBattleshipGame(Player player) {
     BattleshipGame game = new BattleshipGame();
-    game.startGame();
+    game.startGame(player);
   }
-
 }
