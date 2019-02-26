@@ -15,3 +15,22 @@
 * Use casting and describe what it means in a comment **Main.java lines: 80-82**
 * Format strings using escape sequences **BattleshipGame.java line: 37**
 
+## PSI 2
+* Create a method with arguments and return values **BattleshipGame.java line: 170**
+* Identify a method call and argument in comments **BattleshipGame.java line: 78**
+* Identify a header and parameter in comments **Ship.java line: 14**
+* Use the Random class **BattleshipGame.java line: 192**
+* Use the Math class **Main.java line: 77**
+* Create if/else constructs **Main.java lines: 66 & 69**
+* Create ternary constructs **BattleshipGame.java line: 202**
+* Use a switch statement **BattleshipGame.java line: 84**
+* Compare two String objects by using the compareTo and equals methods and make a comment describing how == works with objects **Main.java lines: 66 & 87**
+* Use +, -, \*, /, %, ++, --, += **Main.java lines: 93-100**
+* Use relational operators **Main.java line: 87**
+* Use conditional operators **BattleshipGame.java line: 202**
+* Describe operator precedence as a comment **Main.java lines: 102-104**
+* Create and use while loops **BattleshipGame.java line: 67**
+* Create and use for loops **BattleshipGame.java line: 195**
+* Create and use do/while loops **Main.java lines: 70-72**
+* Use break in a loop with a comment describing what it does **Main.java line: 110**
+* Use continue in a loop with a comment describing what it does **BattleshipGame.java line: 94**

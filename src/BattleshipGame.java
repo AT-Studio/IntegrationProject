@@ -88,6 +88,9 @@ public class BattleshipGame {
                 numCarriers--;
               } else {
                 System.out.println("You cannot place anymore Carriers");
+                //the continue statement ends the current iteration of the loop
+                //and the program continues by once again checking the loop 
+                //condition of the loop it is nested inside of
                 continue;
               }
               break;
@@ -196,7 +199,7 @@ public class BattleshipGame {
       else if (i == 4 || i == 5) ship = new Submarine();
       else ship = new Destroyer();
       while (!ship.place(random.nextInt(GRID_SIZE), random.nextInt(GRID_SIZE), 
-          (random.nextInt(2) == 0) ? 'v' : 'h', grid));
+          random.nextInt(2) == 0 ? 'v' : 'h', grid));
     }
   }
   

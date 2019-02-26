@@ -81,6 +81,35 @@ public class Main {
         + surfaceAreaEarth);
     // casting: telling java to trust the programmer that the restult will fit
     //          into the data type that is being casted to.
+    
+    String firstString = "Mars";
+    String secondString = "Venus";
+    if (firstString.compareTo(secondString) > 0) {
+      System.out.println(firstString + " is lexicographically greater than " 
+          + secondString);
+    }
+    
+    int a = 1;
+    a = a + a;
+    a = a - a;
+    a = a * a;
+    if (a != 0) a = a / a;
+    if (a != 0) a = a % a;
+    a++;
+    a--;
+    a += a;
+    
+    //Certain operators take precedence over others, for instance the multiplication
+    //operator (*) takes precendence over the addition operator (+) and therefore
+    //a * a will be evaluated first before adding a to the product.
+    a = a + a * a;
+    
+    int index = 1;
+    while (true) {
+      //The break statement will end the current loop it is nested inside of
+      if (index > 5) break; 
+      index++;
+    }
 
     player.closeScanner();
   }

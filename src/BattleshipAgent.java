@@ -1,3 +1,5 @@
+//Alexander Thieler
+
 import java.util.Arrays;
 
 public class BattleshipAgent {
