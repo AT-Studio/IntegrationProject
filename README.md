@@ -34,3 +34,19 @@
 * Create and use do/while loops **Main.java lines: 70-72**
 * Use break in a loop with a comment describing what it does **Main.java line: 110**
 * Use continue in a loop with a comment describing what it does **BattleshipGame.java line: 94**
+
+## PSI 3
+* Make a class in a seperate file with private fields, public getters and setters, a constructor with and without parameters **BattleshipCoordinate.java**
+* Overload a method **BattleshipCoordinate.java lines: 4 & 13**
+* Describe inheritance and its benefits **Ship.java lines: 2-6**
+* Develop code that makes use of polymorphism **Ship.java & Carrier.java**
+* Use super and this to access objects and constructors **Carrier.java line: 9 & Ship.java lines: 19-20**
+* Declare, instantiate, initialize and use a one-dimensional array **BattleshipGame.java lines: 19 & 34 & 41 & 260**
+* Manually find the smallest value in an array **Main.java lines: 116-119**
+* Get a sum of the values in an array using an accumulator **Main.java lines: 121-124**
+* Search an array and identify the index where a value was found **Main.java lines: 126-133**
+* Create and use the enhanced for loop **BattleshipGame.java lines: 206-211**
+* Declare, instantiate, initialize and use multi-dimensional arrays **BattleshipGame.java lines: 15 & 30 & 36 & 249**
+* Declare and use an ArrayList of a given type **BattleshipGame.java lines: 230 & 242**
+* Search a two-dimensional array and identify the coordinates where a value was found **Main.java lines: 137-146**
+* Effectively utilize exception handling for user input of an int **Main.java lines: 148-156**

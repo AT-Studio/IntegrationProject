@@ -78,7 +78,7 @@ public class Main {
     int radiusEarth = 6371;
     int surfaceAreaEarth = (int) (4 * pi * Math.pow(radiusEarth, 2));
     System.out.println("Fun fact: The surface area of the earth is: "
-        + surfaceAreaEarth);
+        + surfaceAreaEarth + " km^2");
     // casting: telling java to trust the programmer that the restult will fit
     //          into the data type that is being casted to.
     
@@ -109,6 +109,50 @@ public class Main {
       //The break statement will end the current loop it is nested inside of
       if (index > 5) break; 
       index++;
+    }
+    
+    int[] numberArr = {5, 3, 1, 2, 10};
+    
+    int smallest = numberArr[0];
+    for (int i = 1; i < numberArr.length; i++) {
+      smallest = numberArr[i] < smallest ? numberArr[i] : smallest;
+    }
+    
+    int sum = 0;
+    for (int i = 0; i < numberArr.length; i++) {
+      sum += numberArr[i];
+    }
+    
+    int valueToFind = 2;
+    int idx = -1;
+    for (int i = 0; i < numberArr.length; i++) {
+      if (numberArr[i] == valueToFind) {
+        idx = i;
+        break;
+      }
+    }
+    
+    int[][] numberGrid = {{1, 9, 2}, {8, 3, 7}, {6, 4, 5}};
+    
+    int yCoord = -1;
+    int xCoord = -1;
+    for (int i = 0; i < numberGrid.length; i++) {
+      for (int j = 0; j < numberGrid[i].length; j++) {
+        if (numberGrid[i][j] == valueToFind) {
+          xCoord = j;
+          yCoord = i;
+        }
+      }
+    }
+    
+    System.out.println("Please enter a random number less than 10");
+    try {
+      int input = Integer.parseInt(player.getPlayerInput());
+      if (input >= 10) throw new Exception("Number was not less than 10");
+    } catch (NumberFormatException e) {
+      System.out.println("Number was not a number");
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
 
     player.closeScanner();

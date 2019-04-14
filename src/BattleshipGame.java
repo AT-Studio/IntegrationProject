@@ -1,6 +1,9 @@
 // Alexander Thieler
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,6 +17,9 @@ public class BattleshipGame {
   private char[][] agentGrid;
   private char[][] agentGridHidden;
   private char[] dividerField;
+  
+  private Map<Character, ArrayList<Ship>> playerShips;
+  private Map<Character, ArrayList<Ship>> agentShips;
   
   Player player;
   BattleshipAgent agent;
@@ -33,6 +39,9 @@ public class BattleshipGame {
       Arrays.fill(agentGridHidden[i], '?');
     }
     Arrays.fill(dividerField, '-');
+    
+    playerShips = new HashMap();
+    agentShips = new HashMap();
     
     this.agent = new BattleshipAgent(this, playerGridHidden);
     
@@ -184,8 +193,25 @@ public class BattleshipGame {
     if (type != Carrier.TYPE && type != Battleship.TYPE && type != Cruiser.TYPE 
         && type != Submarine.TYPE && type != Destroyer.TYPE) return false;
     if (x < 0 || x >= GRID_SIZE || y < 0 || y >= GRID_SIZE) return false;
-    if (dir != 'h' && dir != 'v') return false;
+    if (dir != Ship.DIRECTION_HORIZONTAL && dir != Ship.DIRECTION_VERTICAL) return false;
     return true;
+  }
+  
+  public FireResult fireOnPlayer(int x, int y) {
+    if (playerGrid[y][x] != '~') {
+      //TODO: 
+      char type = playerGrid[y][x];
+      playerGrid[y][x] = 'X';
+      ArrayList<Ship> ships = playerShips.get(type);
+      for (Ship ship : ships) {
+        if (ship.containsCoordinate(x, y)) {
+          ship.damageShip();
+          return new FireResult(true, ship.isDestroyed());
+        }
+      }
+      return new FireResult(false, false);
+    }
+    else return new FireResult(false, false);
   }
   
   private void populateGridRandomly(char[][] grid) {
@@ -199,7 +225,22 @@ public class BattleshipGame {
       else if (i == 4 || i == 5) ship = new Submarine();
       else ship = new Destroyer();
       while (!ship.place(random.nextInt(GRID_SIZE), random.nextInt(GRID_SIZE), 
-          random.nextInt(2) == 0 ? 'v' : 'h', grid));
+          random.nextInt(2) == 0 ? Ship.DIRECTION_VERTICAL : Ship.DIRECTION_HORIZONTAL, grid));
+      if (grid == playerGrid) {
+        ArrayList<Ship> ships = playerShips.get(ship.getType());
+        if (ships == null) {
+          ships = new ArrayList();
+          playerShips.put(ship.getType(), ships);
+        }
+        ships.add(ship);
+      } else {
+        ArrayList<Ship> ships = agentShips.get(ship.getType());
+        if (ships == null) {
+          ships = new ArrayList();
+          agentShips.put(ship.getType(), ships);
+        }
+        ships.add(ship);
+      }
     }
   }
   
@@ -215,6 +256,10 @@ public class BattleshipGame {
     }
   }
   
+  public void printLine() {
+    System.out.println(Arrays.toString(dividerField));
+  }
+  
   public void printFullGrid() {
     for (int i = 0; i < GRID_SIZE; i++) {
       System.out.println(Arrays.toString(agentGridHidden[i]));
@@ -223,5 +268,17 @@ public class BattleshipGame {
     for (int i = 0; i < GRID_SIZE; i++) {
       System.out.println(Arrays.toString(playerGrid[i]));
     }
+  }
+  
+  class FireResult {
+    
+    public final boolean hitShip;
+    public final boolean sunkShip;
+    
+    public FireResult(boolean hitShip, boolean sunkShip) {
+      this.hitShip = hitShip;
+      this.sunkShip = sunkShip;
+    }
+    
   }
 }

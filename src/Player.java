@@ -34,6 +34,9 @@ public class Player {
     try {
       coords[0] = scanner.nextInt();
       coords[1] = scanner.nextInt();
+      if (coords[0] >= BattleshipGame.GRID_SIZE || coords[1] >= BattleshipGame.GRID_SIZE) {
+        throw new Exception();
+      }
     } catch (Exception e) {
       return null;
     }
