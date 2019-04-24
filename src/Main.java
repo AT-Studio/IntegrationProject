@@ -54,75 +54,104 @@
 
 import java.util.Scanner;
 
+/**
+ * This program is an implementation of the popular Battleship game. This class in particular is
+ * responsible for starting the Battleship game by creating an instance of the BattleshipGame class.
+ * 
+ * @author Alexander Thieler
+ */
 public class Main {
 
+  /**
+   * Creates an instance of user and reads inputs from the user in order to
+   * start the Battleship game.
+   * @param args String array passed to main method.
+   */
   public static void main(String[] args) {
     Player player = new Player();
 
     System.out.println("Welcome to my Integration Project. Let's play Battleship!");
-    
-    System.out.println("Are you ready? (yes/no)");    
+
+    /**
+     * The user is prompted to choose whether or not they want to play a game of Battleship. Once
+     * he/she agrees, a new game of Battleship is started.
+     */
+    System.out.println("Are you ready? (yes/no)");
     String answer = player.getPlayerInput();
     if (answer.equals("yes")) {
+      System.out.println("");
       System.out.println("Ok GREAT! Let's start!");
       startNewBattleshipGame(player);
     } else {
       do {
         System.out.println("Are you sure?? (yes/no)");
-      } while (!player.getPlayerInput().equals("no"));  
+      } while (!player.getPlayerInput().equals("no"));
+      System.out.println("");
       System.out.println("Ok GREAT! Let's start!");
       startNewBattleshipGame(player);
     }
-    
+
+    player.closeScanner();
+
+    System.out.println("\n\n");
+
+    /**
+     * The code below is simply to meet the requirements of PSI 1-3 that aren't met in the
+     * BattleshipGame itself.
+     */
     double pi = Math.PI;
     int radiusEarth = 6371;
     int surfaceAreaEarth = (int) (4 * pi * Math.pow(radiusEarth, 2));
-    System.out.println("Fun fact: The surface area of the earth is: "
-        + surfaceAreaEarth + " km^2");
+    System.out.println("Fun fact: The surface area of the earth is: " + surfaceAreaEarth + " km^2");
     // casting: telling java to trust the programmer that the restult will fit
-    //          into the data type that is being casted to.
-    
+    // into the data type that is being casted to.
+
     String firstString = "Mars";
     String secondString = "Venus";
     if (firstString.compareTo(secondString) > 0) {
-      System.out.println(firstString + " is lexicographically greater than " 
-          + secondString);
+      System.out.println(firstString + " is lexicographically greater than " + secondString);
     }
-    
+
     int a = 1;
     a = a + a;
     a = a - a;
     a = a * a;
-    if (a != 0) a = a / a;
-    if (a != 0) a = a % a;
+    if (a != 0) {
+      a = a / a;
+    }
+    if (a != 0) {
+      a = a % a;
+    }
     a++;
     a--;
     a += a;
-    
-    //Certain operators take precedence over others, for instance the multiplication
-    //operator (*) takes precendence over the addition operator (+) and therefore
-    //a * a will be evaluated first before adding a to the product.
+
+    // Certain operators take precedence over others, for instance the multiplication
+    // operator (*) takes precendence over the addition operator (+) and therefore
+    // a * a will be evaluated first before adding a to the product.
     a = a + a * a;
-    
+
     int index = 1;
     while (true) {
-      //The break statement will end the current loop it is nested inside of
-      if (index > 5) break; 
+      // The break statement will end the current loop it is nested inside of
+      if (index > 5) {
+        break;
+      }
       index++;
     }
-    
+
     int[] numberArr = {5, 3, 1, 2, 10};
-    
+
     int smallest = numberArr[0];
     for (int i = 1; i < numberArr.length; i++) {
       smallest = numberArr[i] < smallest ? numberArr[i] : smallest;
     }
-    
+
     int sum = 0;
     for (int i = 0; i < numberArr.length; i++) {
       sum += numberArr[i];
     }
-    
+
     int valueToFind = 2;
     int idx = -1;
     for (int i = 0; i < numberArr.length; i++) {
@@ -131,24 +160,27 @@ public class Main {
         break;
       }
     }
-    
+
     int[][] numberGrid = {{1, 9, 2}, {8, 3, 7}, {6, 4, 5}};
-    
-    int yCoord = -1;
-    int xCoord = -1;
-    for (int i = 0; i < numberGrid.length; i++) {
+
+    int y = -1;
+    int x = -1;
+    outerLoop: for (int i = 0; i < numberGrid.length; i++) {
       for (int j = 0; j < numberGrid[i].length; j++) {
         if (numberGrid[i][j] == valueToFind) {
-          xCoord = j;
-          yCoord = i;
+          x = j;
+          y = i;
+          break outerLoop;
         }
       }
     }
-    
+
     System.out.println("Please enter a random number less than 10");
     try {
       int input = Integer.parseInt(player.getPlayerInput());
-      if (input >= 10) throw new Exception("Number was not less than 10");
+      if (input >= 10) {
+        throw new Exception("Number was not less than 10");
+      }
     } catch (NumberFormatException e) {
       System.out.println("Number was not a number");
     } catch (Exception e) {
@@ -157,7 +189,12 @@ public class Main {
 
     player.closeScanner();
   }
-  
+
+  /**
+   * Starts a new game of Battleship.
+   * 
+   * @param player An instance of the Player class. the player playing the game.
+   */
   private static void startNewBattleshipGame(Player player) {
     BattleshipGame game = new BattleshipGame();
     game.startGame(player);
